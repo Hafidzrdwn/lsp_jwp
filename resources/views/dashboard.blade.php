@@ -1,37 +1,41 @@
 @extends('layouts.app')
 
 @section('content')
-<h3 class="text-3xl font-medium text-gray-700 mb-6">Dashboard</h3>
+<!-- Page Header -->
+<div class="mb-8">
+    <h2 class="font-headline-lg text-headline-lg text-on-surface">Overview</h2>
+    <p class="font-body-md text-body-md text-on-surface-variant mt-1">Welcome back. Here is your employee data summary.</p>
+</div>
 
 <!-- Stats Cards -->
 <div class="grid grid-cols-1 gap-6 mb-8 md:grid-cols-3">
-    <div class="flex items-center px-5 py-6 bg-white rounded-md shadow-sm border border-gray-100">
-        <div class="p-3 bg-blue-600 bg-opacity-10 rounded-full">
-            <svg class="w-8 h-8 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path></svg>
+    <div class="bg-surface-container-lowest rounded-xl border border-outline-variant p-6 shadow-[0px_1px_3px_rgba(0,0,0,0.1)] flex items-center">
+        <div class="p-3 bg-primary-container text-on-primary-container rounded-full mr-5">
+            <span class="material-symbols-outlined text-[28px]">group</span>
         </div>
-        <div class="mx-5">
-            <h4 class="text-2xl font-semibold text-gray-700">{{ $totalEmployees }}</h4>
-            <div class="text-gray-500">Total Employees</div>
-        </div>
-    </div>
-
-    <div class="flex items-center px-5 py-6 bg-white rounded-md shadow-sm border border-gray-100">
-        <div class="p-3 bg-green-600 bg-opacity-10 rounded-full">
-            <svg class="w-8 h-8 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
-        </div>
-        <div class="mx-5">
-            <h4 class="text-2xl font-semibold text-gray-700">{{ $activeEmployees }}</h4>
-            <div class="text-gray-500">Active Employees</div>
+        <div>
+            <h4 class="font-headline-md text-headline-md text-on-surface">{{ $totalEmployees }}</h4>
+            <div class="font-body-md text-on-surface-variant">Total Employees</div>
         </div>
     </div>
 
-    <div class="flex items-center px-5 py-6 bg-white rounded-md shadow-sm border border-gray-100">
-        <div class="p-3 bg-red-600 bg-opacity-10 rounded-full">
-            <svg class="w-8 h-8 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+    <div class="bg-surface-container-lowest rounded-xl border border-outline-variant p-6 shadow-[0px_1px_3px_rgba(0,0,0,0.1)] flex items-center">
+        <div class="p-3 bg-surface-container-highest text-primary rounded-full mr-5">
+            <span class="material-symbols-outlined text-[28px]">check_circle</span>
         </div>
-        <div class="mx-5">
-            <h4 class="text-2xl font-semibold text-gray-700">{{ $inactiveEmployees }}</h4>
-            <div class="text-gray-500">Inactive Employees</div>
+        <div>
+            <h4 class="font-headline-md text-headline-md text-on-surface">{{ $activeEmployees }}</h4>
+            <div class="font-body-md text-on-surface-variant">Active Employees</div>
+        </div>
+    </div>
+
+    <div class="bg-surface-container-lowest rounded-xl border border-outline-variant p-6 shadow-[0px_1px_3px_rgba(0,0,0,0.1)] flex items-center">
+        <div class="p-3 bg-error-container text-on-error-container rounded-full mr-5">
+            <span class="material-symbols-outlined text-[28px]">cancel</span>
+        </div>
+        <div>
+            <h4 class="font-headline-md text-headline-md text-on-surface">{{ $inactiveEmployees }}</h4>
+            <div class="font-body-md text-on-surface-variant">Inactive Employees</div>
         </div>
     </div>
 </div>
@@ -39,27 +43,26 @@
 <!-- Charts -->
 <div class="grid grid-cols-1 gap-6 lg:grid-cols-2 xl:grid-cols-3">
     <!-- Gender Chart -->
-    <div class="bg-white p-6 rounded-md shadow-sm border border-gray-100">
-        <h4 class="text-lg font-semibold text-gray-700 mb-4">Gender Distribution</h4>
+    <div class="bg-surface-container-lowest rounded-xl border border-outline-variant p-6 shadow-[0px_1px_3px_rgba(0,0,0,0.1)]">
+        <h4 class="font-headline-sm text-headline-sm text-on-surface mb-4">Gender Distribution</h4>
         <canvas id="genderChart"></canvas>
     </div>
 
     <!-- Age Chart -->
-    <div class="bg-white p-6 rounded-md shadow-sm border border-gray-100">
-        <h4 class="text-lg font-semibold text-gray-700 mb-4">Age Distribution</h4>
+    <div class="bg-surface-container-lowest rounded-xl border border-outline-variant p-6 shadow-[0px_1px_3px_rgba(0,0,0,0.1)]">
+        <h4 class="font-headline-sm text-headline-sm text-on-surface mb-4">Age Distribution</h4>
         <canvas id="ageChart"></canvas>
     </div>
 
     <!-- Education Chart -->
-    <div class="bg-white p-6 rounded-md shadow-sm border border-gray-100 xl:col-span-1 lg:col-span-2">
-        <h4 class="text-lg font-semibold text-gray-700 mb-4">Education Level</h4>
+    <div class="bg-surface-container-lowest rounded-xl border border-outline-variant p-6 shadow-[0px_1px_3px_rgba(0,0,0,0.1)] xl:col-span-1 lg:col-span-2">
+        <h4 class="font-headline-sm text-headline-sm text-on-surface mb-4">Education Level</h4>
         <canvas id="educationChart"></canvas>
     </div>
 </div>
 
 <script>
     document.addEventListener("DOMContentLoaded", function() {
-        // Gender Chart (Bar)
         const ctxGender = document.getElementById('genderChart').getContext('2d');
         const genderData = @json($genderData);
         new Chart(ctxGender, {
@@ -69,13 +72,12 @@
                 datasets: [{
                     label: 'Total',
                     data: Object.values(genderData),
-                    backgroundColor: ['#3b82f6', '#ec4899'],
+                    backgroundColor: ['#4f46e5', '#ffb695'],
                 }]
             },
             options: { responsive: true, scales: { y: { beginAtZero: true, ticks: { stepSize: 1 } } } }
         });
 
-        // Age Chart (Doughnut)
         const ctxAge = document.getElementById('ageChart').getContext('2d');
         const ageData = @json($ageDistribution);
         new Chart(ctxAge, {
@@ -84,13 +86,12 @@
                 labels: Object.keys(ageData),
                 datasets: [{
                     data: Object.values(ageData),
-                    backgroundColor: ['#10b981', '#f59e0b', '#ef4444'],
+                    backgroundColor: ['#c3c0ff', '#4f46e5', '#3525cd'],
                 }]
             },
             options: { responsive: true }
         });
 
-        // Education Chart (Bar)
         const ctxEdu = document.getElementById('educationChart').getContext('2d');
         const eduData = @json($educationData);
         new Chart(ctxEdu, {
@@ -100,7 +101,7 @@
                 datasets: [{
                     label: 'Total',
                     data: Object.values(eduData),
-                    backgroundColor: '#8b5cf6',
+                    backgroundColor: '#4d44e3',
                 }]
             },
             options: { responsive: true, scales: { y: { beginAtZero: true, ticks: { stepSize: 1 } } } }

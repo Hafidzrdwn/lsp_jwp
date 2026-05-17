@@ -1,86 +1,84 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="flex items-center justify-between mb-6">
-    <h3 class="text-3xl font-medium text-gray-700">Employees</h3>
-    <a href="{{ route('employees.create') }}" class="px-4 py-2 font-medium tracking-wide text-white capitalize transition-colors duration-300 transform bg-blue-600 rounded-md hover:bg-blue-500 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-80 shadow-sm">
+<div class="mb-8 flex items-center justify-between">
+    <div>
+        <h2 class="font-headline-lg text-headline-lg text-on-surface">Employees</h2>
+        <p class="font-body-md text-body-md text-on-surface-variant mt-1">Manage all your company personnel.</p>
+    </div>
+    <a href="{{ route('employees.create') }}" class="bg-primary text-on-primary h-10 px-4 rounded-lg font-label-md flex items-center justify-center hover:opacity-90 transition-opacity shadow-sm">
+        <span class="material-symbols-outlined mr-2 text-[20px]">add</span>
         Add Employee
     </a>
 </div>
 
-<div class="flex flex-col mt-8">
-    <div class="py-2 -my-2 overflow-x-auto sm:-mx-6 sm:px-6 lg:-mx-8 lg:px-8">
-        
-        <!-- Search bar -->
-        <div class="mb-4">
-            <form action="{{ route('employees.index') }}" method="GET" class="flex">
-                <input type="text" name="search" value="{{ $search }}" placeholder="Search by Name or NIP..." class="w-full max-w-md px-4 py-2 border rounded-l-md focus:outline-none focus:ring-2 focus:ring-blue-500 border-gray-300 shadow-sm">
-                <button type="submit" class="px-4 py-2 text-white bg-blue-600 border border-blue-600 rounded-r-md hover:bg-blue-700 shadow-sm">Search</button>
-            </form>
-        </div>
+<div class="bg-surface-container-lowest rounded-xl border border-outline-variant p-6 shadow-[0_1px_3px_rgba(0,0,0,0.1)]">
+    <!-- Search bar -->
+    <div class="mb-6 flex">
+        <form action="{{ route('employees.index') }}" method="GET" class="flex w-full max-w-md relative focus-within:ring-2 focus-within:ring-primary rounded-lg overflow-hidden border border-outline-variant">
+            <span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline text-[20px]">search</span>
+            <input type="text" name="search" value="{{ $search ?? '' }}" placeholder="Search by Name or NIP..." class="w-full h-10 pl-10 pr-4 bg-surface hover:bg-surface-container-low focus:outline-none focus:ring-0 text-on-surface font-body-md">
+            <button type="submit" class="px-4 bg-surface-container hover:bg-surface-variant text-on-surface-variant font-label-md border-l border-outline-variant transition-colors cursor-pointer">Search</button>
+        </form>
+    </div>
 
-        <div class="inline-block min-w-full overflow-hidden align-middle border-b border-gray-200 shadow-sm sm:rounded-lg">
-            <table class="min-w-full">
-                <thead>
-                    <tr>
-                        <th class="px-6 py-3 text-xs font-medium leading-4 tracking-wider text-left text-gray-500 uppercase border-b border-gray-200 bg-gray-50">NIP</th>
-                        <th class="px-6 py-3 text-xs font-medium leading-4 tracking-wider text-left text-gray-500 uppercase border-b border-gray-200 bg-gray-50">Name</th>
-                        <th class="px-6 py-3 text-xs font-medium leading-4 tracking-wider text-left text-gray-500 uppercase border-b border-gray-200 bg-gray-50">Department/Position</th>
-                        <th class="px-6 py-3 text-xs font-medium leading-4 tracking-wider text-left text-gray-500 uppercase border-b border-gray-200 bg-gray-50">Status</th>
-                        <th class="px-6 py-3 text-xs font-medium leading-4 tracking-wider text-left text-gray-500 uppercase border-b border-gray-200 bg-gray-50">Actions</th>
-                    </tr>
-                </thead>
+    <div class="overflow-x-auto">
+        <table class="min-w-full divide-y divide-outline-variant">
+            <thead>
+                <tr>
+                    <th class="px-6 py-3 bg-surface text-left font-label-sm text-on-surface-variant uppercase tracking-wider">NIP</th>
+                    <th class="px-6 py-3 bg-surface text-left font-label-sm text-on-surface-variant uppercase tracking-wider">Name</th>
+                    <th class="px-6 py-3 bg-surface text-left font-label-sm text-on-surface-variant uppercase tracking-wider">Department/Position</th>
+                    <th class="px-6 py-3 bg-surface text-left font-label-sm text-on-surface-variant uppercase tracking-wider">Status</th>
+                    <th class="px-6 py-3 bg-surface text-left font-label-sm text-on-surface-variant uppercase tracking-wider">Actions</th>
+                </tr>
+            </thead>
 
-                <tbody class="bg-white">
-                    @forelse($employees as $employee)
-                    <tr>
-                        <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
-                            <div class="text-sm leading-5 text-gray-900">{{ $employee->nip }}</div>
-                        </td>
+            <tbody class="bg-surface-container-lowest divide-y divide-outline-variant">
+                @forelse($employees as $employee)
+                <tr class="hover:bg-surface-container-low transition-colors">
+                    <td class="px-6 py-4 whitespace-nowrap font-body-md text-on-surface">{{ $employee->nip }}</td>
 
-                        <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
-                            <div class="text-sm leading-5 text-gray-900 font-medium">{{ $employee->full_name }}</div>
-                            <div class="text-sm leading-5 text-gray-500">{{ $employee->email }}</div>
-                        </td>
+                    <td class="px-6 py-4 whitespace-nowrap">
+                        <div class="font-label-md text-on-surface">{{ $employee->full_name }}</div>
+                        <div class="font-body-md text-on-surface-variant text-sm">{{ $employee->email }}</div>
+                    </td>
 
-                        <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
-                            <div class="text-sm leading-5 text-gray-900">{{ $employee->department->name ?? '-' }}</div>
-                            <div class="text-sm leading-5 text-gray-500">{{ $employee->position->name ?? '-' }}</div>
-                        </td>
+                    <td class="px-6 py-4 whitespace-nowrap">
+                        <div class="font-body-md text-on-surface">{{ $employee->department->name ?? '-' }}</div>
+                        <div class="font-body-md text-on-surface-variant text-sm">{{ $employee->position->name ?? '-' }}</div>
+                    </td>
 
-                        <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
-                            @if($employee->is_active)
-                                <span class="inline-flex px-2 text-xs font-semibold leading-5 text-green-800 bg-green-100 rounded-full">Active</span>
-                            @else
-                                <span class="inline-flex px-2 text-xs font-semibold leading-5 text-red-800 bg-red-100 rounded-full">Inactive</span>
-                            @endif
-                        </td>
+                    <td class="px-6 py-4 whitespace-nowrap">
+                        @if($employee->is_active)
+                            <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-secondary-container text-on-secondary-container">Active</span>
+                        @else
+                            <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-error-container text-on-error-container">Inactive</span>
+                        @endif
+                    </td>
 
-                        <td class="px-6 py-4 text-sm font-medium leading-5 whitespace-no-wrap border-b border-gray-200">
-                            <a href="{{ route('employees.edit', $employee) }}" class="text-indigo-600 hover:text-indigo-900 mr-3">Edit</a>
-                            
-                            <!-- Delete button triggering SweetAlert -->
-                            <button type="button" onclick="confirmDelete({{ $employee->id }})" class="text-red-600 hover:text-red-900 focus:outline-none">Delete</button>
+                    <td class="px-6 py-4 whitespace-nowrap font-label-md">
+                        <a href="{{ route('employees.edit', $employee) }}" class="text-primary hover:text-primary-fixed-variant mr-3">Edit</a>
+                        
+                        <button type="button" onclick="confirmDelete({{ $employee->id }})" class="text-error hover:opacity-80 focus:outline-none cursor-pointer">Delete</button>
 
-                            <form id="delete-form-{{ $employee->id }}" action="{{ route('employees.destroy', $employee) }}" method="POST" class="hidden">
-                                @csrf
-                                @method('DELETE')
-                            </form>
-                        </td>
-                    </tr>
-                    @empty
-                    <tr>
-                        <td colspan="5" class="px-6 py-4 text-center border-b border-gray-200 text-gray-500">No employees found.</td>
-                    </tr>
-                    @endforelse
-                </tbody>
-            </table>
-        </div>
-        
-        <!-- Pagination -->
-        <div class="mt-4">
-            {{ $employees->appends(['search' => $search])->links() }}
-        </div>
+                        <form id="delete-form-{{ $employee->id }}" action="{{ route('employees.destroy', $employee) }}" method="POST" class="hidden">
+                            @csrf
+                            @method('DELETE')
+                        </form>
+                    </td>
+                </tr>
+                @empty
+                <tr>
+                    <td colspan="5" class="px-6 py-8 text-center font-body-md text-on-surface-variant">No employees found.</td>
+                </tr>
+                @endforelse
+            </tbody>
+        </table>
+    </div>
+    
+    <div class="mt-6">
+        {{ $employees->appends(['search' => $search ?? ''])->links() }}
     </div>
 </div>
 
@@ -88,11 +86,11 @@
     function confirmDelete(id) {
         Swal.fire({
             title: 'Are you sure?',
-            text: "You won't be able to revert this!",
+            text: "This action cannot be undone.",
             icon: 'warning',
             showCancelButton: true,
-            confirmButtonColor: '#dc2626',
-            cancelButtonColor: '#3b82f6',
+            confirmButtonColor: 'var(--color-error)',
+            cancelButtonColor: 'var(--color-outline)',
             confirmButtonText: 'Yes, delete it!'
         }).then((result) => {
             if (result.isConfirmed) {

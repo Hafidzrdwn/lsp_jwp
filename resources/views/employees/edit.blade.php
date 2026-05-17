@@ -1,21 +1,24 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="flex items-center justify-between mb-6">
-    <h3 class="text-3xl font-medium text-gray-700">Edit Employee: <span class="text-blue-600">{{ $employee->full_name }}</span></h3>
-    <a href="{{ route('employees.index') }}" class="px-4 py-2 font-medium tracking-wide text-gray-700 capitalize transition-colors duration-300 transform bg-white border rounded-md hover:bg-gray-50 shadow-sm">
+<div class="mb-8 flex items-center justify-between">
+    <div>
+        <h2 class="font-headline-lg text-headline-lg text-on-surface">Edit Employee</h2>
+        <p class="font-body-md text-body-md text-on-surface-variant mt-1">Update details for <span class="font-bold text-primary">{{ $employee->full_name }}</span>.</p>
+    </div>
+    <a href="{{ route('employees.index') }}" class="bg-surface text-on-surface border border-outline-variant h-10 px-4 rounded-lg font-label-md flex items-center justify-center hover:bg-surface-container-low transition-colors shadow-sm">
         Back
     </a>
 </div>
 
-<div class="p-6 bg-white rounded-md shadow-sm border border-gray-100">
+<div class="bg-surface-container-lowest rounded-xl border border-outline-variant p-8 shadow-[0_1px_3px_rgba(0,0,0,0.1)]">
     <form action="{{ route('employees.update', $employee) }}" method="POST">
         @csrf
         @method('PUT')
         @include('employees._form', ['employee' => $employee])
         
-        <div class="mt-6">
-            <button type="submit" class="px-4 py-2 text-white bg-blue-600 rounded-md hover:bg-blue-700 transition-colors shadow-sm">Update Employee</button>
+        <div class="mt-8 flex justify-end">
+            <button type="submit" class="bg-primary text-on-primary h-10 px-6 rounded-lg font-label-md hover:opacity-90 transition-opacity focus:ring-2 focus:ring-primary focus:ring-offset-2 cursor-pointer">Update Employee</button>
         </div>
     </form>
 </div>
