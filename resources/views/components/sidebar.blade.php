@@ -18,7 +18,7 @@
 
             <a href="{{ route('employees.index') }}" class="flex items-center gap-3 px-3 py-2.5 rounded hover:bg-surface-container-low text-on-surface-variant transition-colors duration-200 ml-1 {{ request()->routeIs('employees.*') ? 'bg-secondary-container text-primary border-l-4 border-primary font-bold ml-0' : 'border-l-4 border-transparent' }}">
                 <span class="material-symbols-outlined text-[20px]" data-icon="group">group</span>
-                <span>Employees</span>
+                <span>Master Pegawai</span>
             </a>
             
             <form method="POST" action="{{ route('logout') }}" class="mt-auto">

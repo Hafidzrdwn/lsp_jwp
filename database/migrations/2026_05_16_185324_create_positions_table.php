@@ -13,8 +13,8 @@ return new class extends Migration
     {
         Schema::create('positions', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->string('level');
+            $table->string('name', 125);
+            $table->string('level', 50);
             $table->timestamps();
         });
     }

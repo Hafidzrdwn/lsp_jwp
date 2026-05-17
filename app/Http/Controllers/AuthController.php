@@ -33,7 +33,7 @@ class AuthController extends Controller
         // jika validasi berhasil, maka lakukan proses login
         if (Auth::attempt($credentials, $remember)) {
             $request->session()->regenerate();
-            return redirect()->intended('dashboard');
+            return redirect()->intended('dashboard')->with('success', 'Login berhasil! Selamat datang kembali, ' . Auth::user()->name . '.');
         }
 
         // jika akun tidak ada di database / login gagal, maka kembalikan ke halaman login dengan pesan error

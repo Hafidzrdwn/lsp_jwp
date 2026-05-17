@@ -1,14 +1,16 @@
 @extends('layouts.app')
 
+@section('title', 'Master Pegawai')
+
 @section('content')
-<div class="mb-8 flex items-center justify-between">
+<div class="mb-6 flex items-center justify-between">
     <div>
-        <h2 class="font-headline-lg text-headline-lg text-on-surface">Employees</h2>
-        <p class="font-body-md text-body-md text-on-surface-variant mt-1">Manage all your company personnel.</p>
+        <h2 class="font-headline-lg text-headline-lg text-on-surface">Master Pegawai</h2>
+        <p class="font-body-md text-body-lg text-on-surface-variant mt-1">Kelola Data Pegawai.</p>
     </div>
     <a href="{{ route('employees.create') }}" class="bg-primary text-on-primary h-10 px-4 rounded-lg font-label-md flex items-center justify-center hover:opacity-90 transition-opacity shadow-sm">
         <span class="material-symbols-outlined mr-2 text-[20px]">add</span>
-        Add Employee
+        Tambah Pegawai
     </a>
 </div>
 
@@ -17,8 +19,8 @@
     <div class="mb-6 flex">
         <form action="{{ route('employees.index') }}" method="GET" class="flex w-full max-w-md relative focus-within:ring-2 focus-within:ring-primary rounded-lg overflow-hidden border border-outline-variant">
             <span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline text-[20px]">search</span>
-            <input type="text" name="search" value="{{ $search ?? '' }}" placeholder="Search by Name or NIP..." class="w-full h-10 pl-10 pr-4 bg-surface hover:bg-surface-container-low focus:outline-none focus:ring-0 text-on-surface font-body-md">
-            <button type="submit" class="px-4 bg-surface-container hover:bg-surface-variant text-on-surface-variant font-label-md border-l border-outline-variant transition-colors cursor-pointer">Search</button>
+            <input type="text" name="search" value="{{ $search ?? '' }}" placeholder="Cari berdasarkan Nama atau NIP..." class="w-full h-10 pl-10 pr-4 bg-surface hover:bg-surface-container-low focus:outline-none focus:ring-0 text-on-surface font-body-md text-body-lg">
+            <button type="submit" class="shrink-0 px-4 bg-surface-container hover:bg-surface-variant text-on-surface-variant font-label-md border-l border-outline-variant transition-colors cursor-pointer">Cari Pegawai</button>
         </form>
     </div>
 

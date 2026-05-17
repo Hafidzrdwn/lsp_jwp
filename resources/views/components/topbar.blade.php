@@ -22,7 +22,7 @@
                     <li>
                         <div class="flex items-center">
                             <span class="material-symbols-outlined text-[16px] text-outline mx-1">chevron_right</span>
-                            <span class="text-on-surface ml-1 font-medium">Employees</span>
+                            <span class="text-on-surface ml-1 font-medium">Master Pegawai</span>
                         </div>
                     </li>
                     @endif
@@ -33,7 +33,7 @@
         <!-- User Profile -->
         <div class="flex items-center gap-4 h-full">
             <div class="text-right hidden sm:flex flex-col justify-center h-full">
-                <div class="font-headline-sm text-[14px] text-on-surface font-semibold leading-tight">{{ Auth::user()->name }}</div>
+                <div class="font-headline-sm text-[14px] text-on-surface font-semibold leading-tight">{{ strtoupper(Auth::user()->name) }}</div>
                 <div class="font-body-md text-[12px] text-on-surface-variant">{{ Auth::user()->email }}</div>
             </div>
 

@@ -1,13 +1,15 @@
 @extends('layouts.app')
 
+@section('title', 'Tambah Data Pegawai')
+
 @section('content')
-<div class="mb-8 flex items-center justify-between">
+<div class="mb-6 flex items-center justify-between">
     <div>
-        <h2 class="font-headline-lg text-headline-lg text-on-surface">Add Employee</h2>
-        <p class="font-body-md text-body-md text-on-surface-variant mt-1">Register a new employee into the system.</p>
+        <h2 class="font-headline-lg text-headline-lg text-on-surface">Tambah Data Pegawai</h2>
+        <p class="font-body-md text-body-lg text-on-surface-variant mt-1">Masukkan data pegawai baru.</p>
     </div>
     <a href="{{ route('employees.index') }}" class="bg-surface text-on-surface border border-outline-variant h-10 px-4 rounded-lg font-label-md flex items-center justify-center hover:bg-surface-container-low transition-colors shadow-sm">
-        Back
+        Kembali
     </a>
 </div>
 

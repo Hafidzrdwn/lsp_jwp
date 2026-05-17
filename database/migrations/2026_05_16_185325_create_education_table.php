@@ -13,8 +13,7 @@ return new class extends Migration
     {
         Schema::create('educations', function (Blueprint $table) {
             $table->id();
-            $table->enum('degree', ['SMA', 'D3', 'S1', 'S2', 'S3']);
-            $table->string('institution_name');
+            $table->string('degree', 50)->unique();
             $table->timestamps();
         });
     }
