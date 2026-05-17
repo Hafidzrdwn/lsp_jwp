@@ -10,14 +10,13 @@ class Employee extends Model
     use HasFactory;
 
     protected $fillable = [
-        'nip',
+        'nik',
         'full_name',
         'email',
         'phone_number',
         'gender',
         'birth_place',
         'birth_date',
-        'blood_type',
         'religion',
         'marital_status',
         'address',
