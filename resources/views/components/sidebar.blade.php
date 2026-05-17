@@ -21,13 +21,31 @@
                 <span>Master Pegawai</span>
             </a>
             
-            <form method="POST" action="{{ route('logout') }}" class="mt-auto">
+            <form id="logout-form" method="POST" action="{{ route('logout') }}" class="mt-auto hidden">
                 @csrf
-                <button type="submit" class="w-full flex items-center gap-3 px-3 py-2.5 rounded hover:bg-error-container text-on-surface-variant hover:text-on-error-container transition-colors duration-200 ml-1 border-l-4 border-transparent cursor-pointer">
-                    <span class="material-symbols-outlined text-[20px]">logout</span>
-                    <span>Logout</span>
-                </button>
             </form>
+            <button type="button" onclick="confirmLogout()" class="w-full flex items-center gap-3 px-3 py-2.5 rounded hover:bg-error-container text-on-surface-variant hover:text-on-error-container transition-colors duration-200 ml-1 border-l-4 border-transparent cursor-pointer mt-auto">
+                <span class="material-symbols-outlined text-[20px]">logout</span>
+                <span>Logout</span>
+            </button>
+            <script>
+                function confirmLogout() {
+                    Swal.fire({
+                        title: 'Yakin ingin keluar?',
+                        text: 'Anda akan keluar dari sesi saat ini.',
+                        icon: 'question',
+                        showCancelButton: true,
+                        confirmButtonColor: '#ba1a1a',
+                        cancelButtonColor: '#777587',
+                        confirmButtonText: 'Ya, Keluar',
+                        cancelButtonText: 'Batal'
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            document.getElementById('logout-form').submit();
+                        }
+                    });
+                }
+            </script>
         </div>
     </div>
 </nav>
