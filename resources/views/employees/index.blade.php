@@ -141,7 +141,7 @@
                         <div class="font-body-md text-[12px] text-on-surface-variant">{{ $employee->email }}</div>
                     </td>
 
-                    <td class="px-4 py-3 whitespace-nowrap font-body-md text-[13px] text-on-surface">{{ $employee->department->name ?? '-' }}</td>
+                    <td class="px-4 py-3 whitespace-nowrap font-body-md text-[13px] text-on-surface">{{ '(' . $employee->department->code . ') ' . $employee->department->name ?? '-' }}</td>
 
                     <td class="px-4 py-3 whitespace-nowrap font-body-md text-[13px] text-on-surface">{{ $employee->position->name ?? '-' }}</td>
 

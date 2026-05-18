@@ -33,7 +33,6 @@ class EmployeeController extends Controller
         }
         $sortDir = in_array($sortDir, ['asc', 'desc']) ? $sortDir : 'desc';
 
-        // Query builder utama
         $employees = Employee::with(['department', 'position', 'education'])
             // Pencarian berdasarkan NIK, Nama, atau Email
             ->when($search, function ($query, $search) {
@@ -59,7 +58,6 @@ class EmployeeController extends Controller
             ->when($activeFilter !== null && $activeFilter !== '', function ($query) use ($activeFilter) {
                 return $query->where('is_active', $activeFilter);
             })
-            // Sorting
             ->orderBy($sortBy, $sortDir)
             ->paginate(10)
             // Pertahankan semua parameter query saat berpindah halaman
@@ -101,7 +99,7 @@ class EmployeeController extends Controller
     {
         // Normalisasi checkbox is_active
         $data = $request->validated();
-        $data['is_active'] = $request->has('is_active') ? 1 : 0;
+        $data['is_active'] = $request->is_active ? 1 : 0;
 
         Employee::create($data);
         return redirect()->route('employees.index')->with('success', 'Data pegawai berhasil ditambahkan.');
@@ -133,8 +131,7 @@ class EmployeeController extends Controller
     public function update(UpdateEmployeeRequest $request, Employee $employee)
     {
         $data = $request->validated();
-        $data['is_active'] = $request->has('is_active') ? 1 : 0;
-
+        $data['is_active'] = $request->is_active ? 1 : 0;
         $employee->update($data);
         return redirect()->route('employees.index')->with('success', 'Data pegawai berhasil diperbarui.');
     }
